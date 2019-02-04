@@ -1,14 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Pixelate</title>
-    <!-- This gets us our fun 8-bit font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+import React from 'react'
+export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = store.getState()
+  }
 
-    <!-- loads our own CSS file -->
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() =&gt; this.setState(store.getState()));
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
+
+
+    render () {
+    return (
+    <div id = 'pixelate'>
     <h1>Pixelate</h1>
     <div>
       <button id='add-row'>Add a row</button>
@@ -27,7 +35,7 @@
     </div>
     <table>
     </table>
-  </body>
-  <!-- loads our JavaScript file -->
-  <script type="text/javascript" src="/script.js"></script>
-</html>
+    </div>
+    )
+    }
+}
